@@ -26,12 +26,9 @@ public class Application {
 
         // 구분자를 기준으로 분리
         String[] tokens = input.split(delimiters);
-        for (String token : tokens) {
-            validateToken(token);
-        }
 
         // 결과 계산
-        int result = 0;
+        int result = calculateSum(tokens);
         System.out.println("결과 : " + result);
 
     }
@@ -65,5 +62,14 @@ public class Application {
         if (number <= 0) {
             throw new IllegalArgumentException("잘못된 입력값입니다: 음수 또는 0은 허용되지 않습니다. (" + token + ")");
         }
+    }
+
+    private static int calculateSum(String[] tokens) {
+        int sum = 0;
+        for (String token : tokens) {
+            validateToken(token);
+            sum += Integer.parseInt(token);
+        }
+        return sum;
     }
 }
