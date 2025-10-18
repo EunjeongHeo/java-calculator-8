@@ -21,7 +21,7 @@ public class Application {
             String customDelimiter = validateAndGetCustomDelimiter(input);
             String escapedCustomDelimiter = java.util.regex.Pattern.quote(customDelimiter);
             delimiters = "[,:" + escapedCustomDelimiter + "]";
-            input = input.substring(4);
+            input = input.substring(input.indexOf("\\n") + 2);
         }
 
         // 구분자를 기준으로 분리
@@ -39,10 +39,16 @@ public class Application {
     }
 
     private static String validateAndGetCustomDelimiter(String input) {
-        // "//"와 "\n" 사이 한 개의 문자가 아닌 경우
-        if (input.length() < 4 || input.charAt(3) != '\n') {
+        // 커스텀 구분자 형식이 아닌 경우
+        if (!input.startsWith("//") || !input.contains("\\n")) {
             throw new IllegalArgumentException("잘못된 커스텀 구분자 형식입니다.");
         }
+
+        // 구분자 길이가 1이 아닌 경우
+        if (input.substring(2, input.indexOf("\\n")).length() != 1) {
+            throw new IllegalArgumentException("잘못된 커스텀 구분자 형식입니다.");
+        }
+
         return String.valueOf(input.charAt(2));
     }
 
