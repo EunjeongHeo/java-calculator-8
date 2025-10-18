@@ -73,6 +73,38 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 음수_포함시_예외() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("-1,-2:3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 소수점_포함시_예외() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1.2,2:3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 잘못된_커스텀_구분자_형식시_예외() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//안녕하세요\\n1;2;3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 허용되지_않는_값_포함시_예외() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1+2"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

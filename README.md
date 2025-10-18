@@ -40,8 +40,8 @@
     - [x] `"//.\n1.2,3:4"` → 10 (기본 구분자와 커스텀 구분자 함께 사용 시)
 
 
-- [ ] 실패 케이스에 대한 테스트 코드를 추가한다.
-    - [ ] `"-1,-2:3"` → `IllegalArgumentException` 발생 (음수 포함 시)
-    - [ ] `"1.2,2:3"` → `IllegalArgumentException` 발생 (소수점 포함 시)
-    - [ ] `"//안녕하세요\n1;2;3"` → `IllegalArgumentException` 발생 (잘못된 커스텀 구분자 형식일 시)
-    - [ ] `"1+2"` → `IllegalArgumentException` 발생 (그 외 허용되지 않는 값이 있을 시)
+- [x] 실패 케이스에 대한 테스트 코드를 추가한다.
+    - [x] `"-1,-2:3"` → `IllegalArgumentException` 발생 (음수 포함 시)
+    - [x] `"1.2,2:3"` → `IllegalArgumentException` 발생 (소수점 포함 시)
+    - [x] `"//안녕하세요\n1;2;3"` → `IllegalArgumentException` 발생 (잘못된 커스텀 구분자 형식일 시)
+    - [x] `"1+2"` → `IllegalArgumentException` 발생 (그 외 허용되지 않는 값이 있을 시)
