@@ -1,21 +1,17 @@
 package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Objects;
 
 public class Application {
     public static void main(String[] args) {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
 
-        // 빈 문자열 입력 시 바로 0 출력 후 종료
-        if (Objects.equals(input, "")) {
+        // 빈 문자열 또는 공백 문자열이면 0 출력 후 종료
+        if (isBlankInput(input)) {
             System.out.println("결과 : 0");
             return;
         }
-
-        // 입력값 검증
-        validateInput(input);
 
         // 기본 구분자 (쉼표, 콜론)
         String delimiters = "[,:]";
@@ -40,11 +36,9 @@ public class Application {
 
     }
 
-    private static void validateInput(String input) {
-        // 공백만 있는 경우
-        if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException("잘못된 입력값입니다: 공백만 있는 문자열은 허용되지 않습니다.");
-        }
+    private static boolean isBlankInput(String input) {
+        // 입력이 비어 있거나 공백만 포함되어 있는지 판별
+        return input == null || input.trim().isEmpty();
     }
 
     private static String validateAndGetCustomDelimiter(String input) {
